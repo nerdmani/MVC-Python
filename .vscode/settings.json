@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:mvc-piton}/biblioteca.db",
+            "name": "localhost"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
