@@ -7,4 +7,3 @@ class UsuarioController:
     def cadastrar_usuario(self, nome, usuario_id):
         usuario = Usuario(nome, usuario_id)
         self.usuarios.append(usuario)
-        return "Usuário cadastrado com sucesso!"
