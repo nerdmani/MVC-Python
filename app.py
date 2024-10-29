@@ -67,10 +67,8 @@ class BibliotecaDB:
         self.cursor.execute("SELECT disponivel FROM livros WHERE isbn = ?", (livro_isbn,))
         resultado = self.cursor.fetchone()
         
-        if resultado and resultado[0] == 0:  # Se o livro não estiver disponível
-            # Atualiza o status do livro para disponível
+        if resultado and resultado[0] == 0:  
             self.cursor.execute("UPDATE livros SET disponivel = 1 WHERE isbn = ?", (livro_isbn,))
-            # Remove o registro de empréstimo associado a este livro
             self.cursor.execute("DELETE FROM emprestimos WHERE livro_isbn = ?", (livro_isbn,))
             self.conn.commit()
             messagebox.showinfo("Sucesso", "Livro devolvido com sucesso!")
@@ -99,7 +97,6 @@ class BibliotecaApp:
         self.root.title("Sistema de Gerenciamento de Biblioteca")
         self.db = BibliotecaDB()
 
-        # Criando abas para a navegação
         self.tabControl = ttk.Notebook(root)
         
         self.cadastro_livro_frame = ttk.Frame(self.tabControl)
@@ -119,7 +116,7 @@ class BibliotecaApp:
         self.create_widgets()
 
     def create_widgets(self):
-        # Widgets para cadastro de livro
+
         self.titulo_entry = tk.Entry(self.cadastro_livro_frame, width=30)
         self.titulo_entry.insert(0, "Título do Livro")
         self.titulo_entry.pack(pady=5)
@@ -135,7 +132,6 @@ class BibliotecaApp:
         self.adicionar_livro_btn = tk.Button(self.cadastro_livro_frame, text="Adicionar Livro", command=self.adicionar_livro)
         self.adicionar_livro_btn.pack(pady=5)
 
-        # Widgets para cadastro de usuário
         self.nome_entry = tk.Entry(self.cadastro_usuario_frame, width=30)
         self.nome_entry.insert(0, "Nome do Usuário")
         self.nome_entry.pack(pady=5)
@@ -147,21 +143,17 @@ class BibliotecaApp:
         self.adicionar_usuario_btn = tk.Button(self.cadastro_usuario_frame, text="Adicionar Usuário", command=self.adicionar_usuario)
         self.adicionar_usuario_btn.pack(pady=5)
 
-        # Widgets para registrar empréstimo
         self.emprestar_btn = tk.Button(self.emprestimo_frame, text="Registrar Empréstimo", command=self.registrar_emprestimo)
         self.emprestar_btn.pack(pady=10)
 
-        # Botão para devolver livro
         self.devolver_btn = tk.Button(self.emprestimo_frame, text="Devolver Livro", command=self.devolver_livro)
         self.devolver_btn.pack(pady=10)
 
-        # Widgets para visualização de empréstimos
         self.visualizar_emprestimos_btn = tk.Button(self.visualizacao_emprestimos_frame, text="Atualizar Lista de Empréstimos", command=self.mostrar_emprestimos)
         self.visualizar_emprestimos_btn.pack(pady=10)
         self.emprestimos_text = tk.Text(self.visualizacao_emprestimos_frame, width=50, height=10)
         self.emprestimos_text.pack(pady=5)
 
-        # Widgets para visualização de livros
         self.visualizar_livros_btn = tk.Button(self.visualizacao_livros_frame, text="Atualizar Lista de Livros", command=self.mostrar_livros)
         self.visualizar_livros_btn.pack(pady=10)
         self.livros_text = tk.Text(self.visualizacao_livros_frame, width=50, height=10)
