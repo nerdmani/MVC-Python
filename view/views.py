@@ -13,7 +13,7 @@ class BibliotecaView:
         self.emprestimo_frame = ttk.Frame(self.tabControl)
         self.visualizacao_emprestimos_frame = ttk.Frame(self.tabControl)
         self.visualizacao_livros_frame = ttk.Frame(self.tabControl)
-        self.busca_livro_frame = ttk.Frame(self.tabControl)  # Frame para busca de livro
+        self.busca_livro_frame = ttk.Frame(self.tabControl)  
         
         # Adicionando as abas
         self.tabControl.add(self.cadastro_livro_frame, text='Cadastro de Livro')
@@ -27,7 +27,6 @@ class BibliotecaView:
         self.create_widgets()
 
     def create_widgets(self):
-        # Widgets da aba de cadastro de livro
         self.titulo_entry = tk.Entry(self.cadastro_livro_frame, width=30)
         self.titulo_entry.insert(0, "Título do Livro")
         self.titulo_entry.pack(pady=5)
@@ -43,7 +42,6 @@ class BibliotecaView:
         self.adicionar_livro_btn = tk.Button(self.cadastro_livro_frame, text="Adicionar Livro", command=self.controller.adicionar_livro)
         self.adicionar_livro_btn.pack(pady=5)
 
-        # Widgets da aba de cadastro de usuário
         self.nome_entry = tk.Entry(self.cadastro_usuario_frame, width=30)
         self.nome_entry.insert(0, "Nome do Usuário")
         self.nome_entry.pack(pady=5)
@@ -55,26 +53,22 @@ class BibliotecaView:
         self.adicionar_usuario_btn = tk.Button(self.cadastro_usuario_frame, text="Adicionar Usuário", command=self.controller.adicionar_usuario)
         self.adicionar_usuario_btn.pack(pady=5)
 
-        # Widgets da aba de empréstimo
         self.emprestar_btn = tk.Button(self.emprestimo_frame, text="Registrar Empréstimo", command=self.controller.registrar_emprestimo)
         self.emprestar_btn.pack(pady=10)
 
         self.devolver_btn = tk.Button(self.emprestimo_frame, text="Devolver Livro", command=self.controller.devolver_livro)
         self.devolver_btn.pack(pady=10)
 
-        # Widgets da aba de visualização de empréstimos
         self.visualizar_emprestimos_btn = tk.Button(self.visualizacao_emprestimos_frame, text="Atualizar Lista de Empréstimos", command=self.controller.mostrar_emprestimos)
         self.visualizar_emprestimos_btn.pack(pady=10)
         self.emprestimos_text = tk.Text(self.visualizacao_emprestimos_frame, width=50, height=10)
         self.emprestimos_text.pack(pady=5)
 
-        # Widgets da aba de visualização de livros
         self.visualizar_livros_btn = tk.Button(self.visualizacao_livros_frame, text="Atualizar Lista de Livros", command=self.controller.mostrar_livros)
         self.visualizar_livros_btn.pack(pady=10)
         self.livros_text = tk.Text(self.visualizacao_livros_frame, width=50, height=10)
         self.livros_text.pack(pady=5)
 
-        # Widgets da aba de busca de livro
         self.isbn_label = tk.Label(self.busca_livro_frame, text="ISBN:")
         self.isbn_label.pack(pady=5)
         self.isbn_entry = tk.Entry(self.busca_livro_frame)
@@ -97,8 +91,6 @@ class BibliotecaView:
 
     def exibir_livro(self, livro):
         if livro:
-            # Aqui você pode definir como deseja exibir as informações.
-            # Exemplo: printar no terminal ou exibir em uma Label na interface Tkinter.
             print("Título:", livro["titulo"])
             print("Autor:", livro["autor"])
             print("ISBN:", livro["isbn"])
